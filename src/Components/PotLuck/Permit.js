@@ -2,7 +2,7 @@ import { React, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-// IMPORTNG CUSTOM COMPONENTS
+// IMPORT CUSTOM COMPONENTS ABOVE
 
 const Permit = props => {
     const [ boolean, setBoolean ] = useState( false );
@@ -11,7 +11,7 @@ const Permit = props => {
 
     const addFood = ( id, food ) => {
         axios()
-            .post({ foodName: food },(``)) // ADD API HERE 
+            .post({ foodName: food },(`${baseURL}/api/potlucks`)) // ADD API HERE 
             .then((response) => {
                 console.log(response, "addFood response");
             })
@@ -22,7 +22,7 @@ const Permit = props => {
 
     const assignFood = ( id, food ) => {
         axios()
-            .post({ foodName:food }, (``)) // ADD API HERE
+            .post({ foodName:food }, (`${baseURL}/api/potlucks`)) // ADD API HERE
             .then((response) => {
                 console.log(response, "assignFood response");
             })
@@ -32,7 +32,7 @@ const Permit = props => {
     };
     const removeFood = ( id, food ) => {
         axios()
-            .post({ foodName:food }, (``)) // ADD API HERE
+            .post({ foodName:food }, (`${baseURL}/api/potlucks`)) // ADD API HERE
             .then((response) => {
                 console.log(response, "removeFood response");
             })
@@ -48,17 +48,9 @@ const Permit = props => {
 
     return (
         <div>
-            { props.permit.location === "" ? (
-                <div>Locating...</div>
-                ) : (
-                <div>
-                    { props.user.id === props.permit.userID ? (
+            { props.permit.location }
 
-                    )}
-            }
         </div>
 
     )
-
-
 }

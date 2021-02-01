@@ -25,7 +25,7 @@ const PermitForm = props => {
     const handleSubmit = permit => {
         permit.preventDefault();
         axios()
-            .post(addPermit, "") // ADD THE API HERE! 
+            .post(addPermit, `${baseURL}/api/potlucks`) // ADD THE API HERE! 
             .then((response) => {
                 console.log(response, "permitPostRes")
             })
@@ -34,7 +34,7 @@ const PermitForm = props => {
             })
         setAddPermit( initialPermit );
     }
-
+// RETURNING PROPS INFO
     return (
         <div className = "permit-form">
             <Form OnSubmit = { handleSubmit }>
