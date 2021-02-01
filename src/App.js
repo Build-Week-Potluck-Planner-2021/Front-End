@@ -30,6 +30,7 @@ const initialErrors=({
 const [userFormValues, setUserFormValues]=useState(initialFormValues);
 const [errors, setErrors]=useState(initialErrors);
 const [users, setUsers]=useState(initialUsers);
+const [disabled, setDisabled]=useState(initialDisabled);
 
 const [foodItems, setFoodItems]=useState(initialFoodItems);
 const [potlucks, setPotlucks]=useState(initialPotlucks);
@@ -58,7 +59,7 @@ const onChange=function(event){
         <Link to="/createfoodlist">Create A Food List</Link>
       </HeadingNav>
       <Route exact path="/">
-        <UserCreation users={users} setUsers={setUsers} userFormValues={userFormValues} setUserFormValues={setUserFormValues} onChange={onChange} />
+        <UserCreation users={users} setUsers={setUsers} userFormValues={userFormValues} setUserFormValues={setUserFormValues} onChange={onChange} disabled={disabled} setDisabled={setDisabled} />
       </Route>
 
       {/* <Route path="/createpotluck">
@@ -103,6 +104,7 @@ link, a {
   color: #ffcc29;
   position: relative;
   bottom: 7rem;
+  font-weight: bold;
 }
 `
 
