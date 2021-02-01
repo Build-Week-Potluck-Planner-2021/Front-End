@@ -3,21 +3,24 @@ import styled from "styled-components";
 
 export default function UserCreation(props){
 
-    const { users, setUsers, userFormValues, setUserFormValues, onChange, disabled, setDisabled }=props;
+    const { users, setUsers, userFormValues, setUserFormValues, onChangeUserForm, onSubmitUserForm, disabled, setDisabled }=props;
 
 return (
     <div>
-        <UserForm>
+        <UserForm onSubmit={onSubmitUserForm}>
             <UserFormTitle>Create A Basic Guest/Organizer Profile</UserFormTitle>
             <label htmlFor="name">Enter Your Name:
-                <input name="name" value={userFormValues.name} type="text" placeholder="Enter Your Name" onChange={onChange} />
+                <input name="name" value={userFormValues.name} type="text" placeholder="Enter Your Name" onChange={onChangeUserForm} />
             </label>
 
             <label htmlFor="favoriteFood">Favorite Food:
-                <input name="favoriteFood" value={userFormValues.favoriteFood} type="text" placeholder="Enter Your Favorite Food" onChange={onChange} /> 
+                <input name="favoriteFood" value={userFormValues.favoriteFood} type="text" placeholder="Enter Your Favorite Food" onChange={onChangeUserForm} /> 
             </label>
 
-            <button disabled={disabled}>Submit</button>
+            <button >Submit</button>
+            {users.map(function(user){
+                return <p>Name: {user.name}, Favorite Food: {user.favoriteFood}</p>
+            })}
         </UserForm>
     </div>
 )
@@ -39,6 +42,9 @@ const UserForm=styled.form`
     };
     label {
         margin: 1rem;
+        font-weight: bold;
+    }
+    p {
         font-weight: bold;
     }
 `

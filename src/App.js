@@ -38,13 +38,30 @@ const [potlucks, setPotlucks]=useState(initialPotlucks);
 
 //event handlers
 
-const onChange=function(event){
+const onChangeUserForm=function(event){
 
   const {name, value, type, checked}=event.target;
 
   const valueToUse=type==="checkbox" ? checked : value;
 
   setUserFormValues({...userFormValues, [name]: valueToUse })
+}
+
+const onSubmitUserForm =function(event){
+  event.preventDefault();
+  const { name, value, type, checked }=event.target;
+  
+  const newUser={
+    name: userFormValues.name,
+    favoriteFood: userFormValues.favoriteFood,
+    foodList: userFormValues.foodList,
+    potlucks: userFormValues.potlucks,
+  }
+
+  setUsers([...users, newUser]);
+  setUserFormValues(initialFormValues);
+
+
 }
 
 
@@ -59,7 +76,7 @@ const onChange=function(event){
         <Link to="/createfoodlist">Create A Food List</Link>
       </HeadingNav>
       <Route exact path="/">
-        <UserCreation users={users} setUsers={setUsers} userFormValues={userFormValues} setUserFormValues={setUserFormValues} onChange={onChange} disabled={disabled} setDisabled={setDisabled} />
+        <UserCreation users={users} setUsers={setUsers} userFormValues={userFormValues} setUserFormValues={setUserFormValues} onChangeUserForm={onChangeUserForm} disabled={disabled} setDisabled={setDisabled} onSubmitUserForm={onSubmitUserForm} />
       </Route>
 
       {/* <Route path="/createpotluck">
