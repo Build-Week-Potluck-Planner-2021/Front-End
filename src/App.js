@@ -1,30 +1,50 @@
 import './App.css';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Link } from "react-router-dom";
 import * as yup from "yup";
 import styled from "styled-components";
-
+import UserCreation from "../src/components/user-creation";
 
 function App() {
 
-
+//initial slices of data  
 const initialUsers=[];
 const initialFoodItems=[];
 const initialPotlucks=[];
+const initialDisabled=true;
 
-const [userFormValues, setUserFormValues]=useState({
+const initialFormValues=({
   name: "",
   favoriteFood: "",
-  foodItems: "",
+  foodList: "",
   potlucks: "",
-});
+})
+const initialErrors=({
+  name: "",
+  favoriteFood: "",
+  foodList: "",
+  potlucks: ""
+})
 
+//slices of state 
+const [userFormValues, setUserFormValues]=useState(initialFormValues);
+const [errors, setErrors]=useState(initialErrors);
 const [users, setUsers]=useState(initialUsers);
 
 const [foodItems, setFoodItems]=useState(initialFoodItems);
-
 const [potlucks, setPotlucks]=useState(initialPotlucks);
 
+
+//event handlers
+
+const onChange=function(event){
+
+  const {name, value, type, checked}=event.target;
+
+  const valueToUse=type==="checkbox" ? checked : value;
+
+  setUserFormValues({...userFormValues, [name]: valueToUse })
+}
 
 
   return (
@@ -32,11 +52,30 @@ const [potlucks, setPotlucks]=useState(initialPotlucks);
       <HomepageDiv>
       <h1>Potluck Planner</h1>
       <h4>Create, Connect, and Taste </h4>
+      <HeadingNav>
+        <Link to="/">Home</Link>
+        <Link to="/createpotluck">Create A Potluck</Link>
+        <Link to="/createfoodlist">Create A Food List</Link>
+      </HeadingNav>
+      <Route exact path="/">
+        <UserCreation users={users} setUsers={setUsers} userFormValues={userFormValues} setUserFormValues={setUserFormValues} onChange={onChange} />
+      </Route>
+
+      {/* <Route path="/createpotluck">
+        <CreatePotLuck />
+      </Route>
+      
+      <Route path="/createfoodlist">
+        <CreateFoodList />
+      </Route> */}
+      
       </HomepageDiv>
     </div>
   );
 }
 
+
+//Styled Components 
 const HomepageDiv=styled.div`
 display: flex;
 flex-direction: column;
@@ -52,6 +91,18 @@ h4 {
   color: #ffcc29;
   border-bottom: .75rem ridge #ffcc29;
   border-radius: 1rem;
+  padding: .5rem;
+}
+`
+const HeadingNav=styled.ul`
+display: flex;
+justify-content: center;
+link, a {
+  margin: 1rem;
+  text-decoration: none;
+  color: #ffcc29;
+  position: relative;
+  bottom: 7rem;
 }
 `
 
