@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+// Styled Components
 const FoodListDiv = styled.div`
   background-color: #00af91;
   padding: 7px 70px;
@@ -52,7 +53,6 @@ class FoodList extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // Form submission, prevents default page refresh
   handleSubmit(event) {
     const { food, beverage } = this.state;
     event.preventDefault();
@@ -105,5 +105,4 @@ class FoodList extends Component {
     );
   }
 }
-
 export default FoodList;
