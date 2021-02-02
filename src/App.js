@@ -1,24 +1,19 @@
- Food-List-Component
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Link } from "react-router-dom";
 import * as yup from "yup";
 import styled from "styled-components";
-import FoodList from "./FoodList";
+import FoodList from "./Components/FoodList";
+import UserCreation from "./Components/user-creation";
+import Permit from "./Components/Permit";
 
-import './App.css';
-import React, { useState, useEffect } from "react";
-import { Route, Link } from "react-router-dom";
-import * as yup from "yup";
-import styled from "styled-components";
-import UserCreation from "./components2/user-creation";
-main
 
 function App() {
 
 //initial slices of data  
 const initialUsers=[];
-const initialFoodItems=[];
+const initialFoodItems="";
+const initialBeverageItems="";
 const initialPotlucks=[];
 const initialDisabled=true;
 
@@ -42,6 +37,7 @@ const [users, setUsers]=useState(initialUsers);
 const [disabled, setDisabled]=useState(initialDisabled);
 
 const [foodItems, setFoodItems]=useState(initialFoodItems);
+const [beverageItems, setBeverageItems]=useState(initialBeverageItems);
 const [potlucks, setPotlucks]=useState(initialPotlucks);
 
 
@@ -78,9 +74,6 @@ const onSubmitUserForm =function(event){
     <div>
       <HomepageDiv>
       <h1>Potluck Planner</h1>
- Food-List-Component
-      <FoodList />
-
       <h4>Create, Connect, and Taste </h4>
       <HeadingNav>
         <Link to="/">Home</Link>
@@ -91,13 +84,13 @@ const onSubmitUserForm =function(event){
         <UserCreation users={users} setUsers={setUsers} userFormValues={userFormValues} setUserFormValues={setUserFormValues} onChangeUserForm={onChangeUserForm} disabled={disabled} setDisabled={setDisabled} onSubmitUserForm={onSubmitUserForm} />
       </Route>
 
-      {/* <Route path="/createpotluck">
-        <CreatePotLuck />
+      <Route exact path="/createpotluck">
+        <Permit />
       </Route>
       
-      <Route path="/createfoodlist">
-        <CreateFoodList />
-      </Route> */}
+      <Route exact path="/createfoodlist">
+        <FoodList />
+      </Route> 
       
       </HomepageDiv>
  main

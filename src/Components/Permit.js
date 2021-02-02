@@ -4,14 +4,14 @@ import axios from "axios";
 
 // IMPORT CUSTOM COMPONENTS ABOVE
 
-const Permit = props => {
+export default function Permit(props) {
     const [ boolean, setBoolean ] = useState( false );
     const { id } = useParams();
     console.log( id );
 
     const addFood = ( id, food ) => {
         axios()
-            .post({ foodName: food },(`${baseURL}/api/potlucks`)) // ADD API HERE 
+            .post({ foodName: food },(`https://radiant-gorge-83314.herokuapp.com//api/potlucks`)) // ADD API HERE 
             .then((response) => {
                 console.log(response, "addFood response");
             })
@@ -22,7 +22,7 @@ const Permit = props => {
 
     const assignFood = ( id, food ) => {
         axios()
-            .post({ foodName:food }, (`${baseURL}/api/potlucks`)) // ADD API HERE
+            .post({ foodName:food }, (`https://radiant-gorge-83314.herokuapp.com//api/potlucks`)) // ADD API HERE
             .then((response) => {
                 console.log(response, "assignFood response");
             })
@@ -32,7 +32,7 @@ const Permit = props => {
     };
     const removeFood = ( id, food ) => {
         axios()
-            .post({ foodName:food }, (`${baseURL}/api/potlucks`)) // ADD API HERE
+            .post({ foodName:food }, (`https://radiant-gorge-83314.herokuapp.com//api/potlucks`)) // ADD API HERE
             .then((response) => {
                 console.log(response, "removeFood response");
             })
@@ -54,3 +54,4 @@ const Permit = props => {
 
     )
 }
+

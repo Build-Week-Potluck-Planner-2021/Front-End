@@ -25,7 +25,7 @@ const PermitForm = props => {
     const handleSubmit = permit => {
         permit.preventDefault();
         axios()
-            .post(addPermit, `${baseURL}/api/potlucks`) // ADD THE API HERE! 
+            .post(addPermit, `https://radiant-gorge-83314.herokuapp.com//api/potlucks`) // ADD THE API HERE! 
             .then((response) => {
                 console.log(response, "permitPostRes")
             })
