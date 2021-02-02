@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Route, Link } from "react-router-dom";
 import * as yup from "yup";
 import styled from "styled-components";
-import UserCreation from "../src/components/user-creation";
+import UserCreation from "./components2/user-creation";
 
 function App() {
 
