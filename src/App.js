@@ -1,9 +1,18 @@
+ Food-List-Component
+import "./App.css";
+import React, { useState } from "react";
+import { Route, Link } from "react-router-dom";
+import * as yup from "yup";
+import styled from "styled-components";
+import FoodList from "./FoodList";
+
 import './App.css';
 import React, { useState, useEffect } from "react";
 import { Route, Link } from "react-router-dom";
 import * as yup from "yup";
 import styled from "styled-components";
 import UserCreation from "./components2/user-creation";
+main
 
 function App() {
 
@@ -69,6 +78,9 @@ const onSubmitUserForm =function(event){
     <div>
       <HomepageDiv>
       <h1>Potluck Planner</h1>
+ Food-List-Component
+      <FoodList />
+
       <h4>Create, Connect, and Taste </h4>
       <HeadingNav>
         <Link to="/">Home</Link>
@@ -88,6 +100,7 @@ const onSubmitUserForm =function(event){
       </Route> */}
       
       </HomepageDiv>
+ main
     </div>
   );
 }
