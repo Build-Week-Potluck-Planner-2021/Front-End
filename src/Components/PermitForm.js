@@ -1,45 +1,58 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { axios } from "axios";
+import React, { useState } from "react";
+import axios  from "axios";
+import PermitCard from "./PermitCard";
+import styled from "styled-components";
 
-const PermitForm ( props ) => {
 
-    const initialPermit = {
-        potluckName: "",
-        userID: "",
-        location: "",
-        date: "",
-        time: "",
-    };
+const initialplFormValues = {
+    potluckName: "",
+    users: "",
+    location: "",
+    date: "",
+    time: "",
 };
+
+const initialPotlucks = [];
+
 
 export default function PermitForm () {
     const [ potlucks, setPotlucks ] = useState( initialPotlucks );
+    const [ plFormValues, setplFormValues ] = useState( initialplFormValues );
 
     const handleChangePL = event => { // handle change retitle
-        setAddPermit({
-            ...potlucks,
+        setplFormValues({
+            ...plFormValues,
             [ event.target.name ]: event.target.value,
         });
     };
 
     const handleSubmit = event => {
         event.preventDefault();
-        axios()
-            .post(potlucks, `https://radiant-gorge-83314.herokuapp.com//api/potlucks`) // ADD THE API HERE! 
-            .then((response) => {
-                console.log(response, "permitPostRes")
-            })
-            .catch((error) => {
-                console.log(error, "Error from PermitForm");
-            })
-        setPotlucks( InitialPotlucks );
-    }
+        const newpotLuck = { 
+            potluckName: plFormValues.potluckName,
+            users: plFormValues.users,
+            location: plFormValues.location,
+            date: plFormValues.date,
+            time: plFormValues.time,
+        }
+    //     axios
+    //         .post("https://radiant-gorge-83314.herokuapp.com//api/potlucks",newpotLuck ) // ADD THE API HERE! 
+    //         .then((response) => {
+    //             console.log(response.data, "permitPostRes")
+    //             setPotlucks( [...potlucks, response.data] )
+    //         })
+    //         .catch((error) => {
+    //             console.log(error, "Error from PermitForm");
+    //         })
+        // setplFormValues( initialplFormValues );
+    setPotlucks( [...potlucks, newpotLuck] );
+    setplFormValues( initialplFormValues );
+}
 // RETURNING PROPS INFO
     return (
         <FormContainer>
-            <Form OnSubmit = { handleSubmit }>
-                <Label>Permit Name</Label>
+            <form onSubmit = { handleSubmit }>
+                <label>Permit Name</label>
                 <Input
                     name = "potluckName"
                     type = "text"
@@ -47,7 +60,7 @@ export default function PermitForm () {
                     value = { potlucks.potluckName }
                     onChange = { handleChangePL }
                 />
-                <Label>Location</Label>
+                <label>Location</label>
                 <Input
                     name = "location"
                     type = "text"
@@ -55,7 +68,7 @@ export default function PermitForm () {
                     value = { potlucks.location }
                     onChange = { handleChangePL }
                 />
-                <Label>Date</Label>
+                <label>Date</label>
                 <Input
                     name = "date"
                     type = "date"
@@ -63,7 +76,7 @@ export default function PermitForm () {
                     value = { potlucks.date }
                     onChange = { handleChangePL }
                 />
-                <Label>Time</Label>
+                <label>Time</label>
                 <Input
                     name = "time"
                     type = "time"
@@ -72,22 +85,30 @@ export default function PermitForm () {
                     onChange = { handleChangePL }
                 />
                 <Button type = "Submit">Submit</Button>
-            </Form>
+            </form>
+            <PermitCard
+                potlucks = { potlucks }
+                setPotlucks = { setPotlucks } 
+            />
+ 
         </FormContainer>
     )
 };
 
+
+
+
 // STYLED CSS
 const FormContainer = styled.div`
-border: 1px solid gray;
+border: 1px solid black;
     margin: 0 5rem;
     width: auto;
     display: flex; 
 `
-const Input = styled.div`
-margin: 1rem;
+const Input = styled.input`
+    margin: 1rem;
 `
 const Button = styled.button`
-margin: 1rem;
+    margin: 1rem;
 `
 

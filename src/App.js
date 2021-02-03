@@ -5,7 +5,7 @@ import * as yup from "yup";
 import styled from "styled-components";
 import FoodList from "./Components/FoodList";
 import UserCreation from "./Components/user-creation";
-import Permit from "./Components/Permit";
+import PermitForm from "./Components/PermitForm";
 
 
 function App() {
@@ -101,7 +101,7 @@ const onSubmitUserForm =function(event){
       </Route> 
       
       </HomepageDiv>
- main
+
     </div>
   );
 }

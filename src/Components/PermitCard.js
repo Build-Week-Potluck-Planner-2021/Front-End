@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect }from "react";
+import React, { useEffect } from "react";
 import PermitForm from "./PermitForm";
 import axios from "axios";
 import styled from "styled-components";
@@ -7,57 +7,57 @@ import styled from "styled-components";
 
 export default function PermitCard( props ) {
 
- const [potLucks, setPotLucks] = useState([])
-    console.log(potLucks, "PL data")
+    const { potlucks, setPotLucks } = props
+
+    console.log(potlucks, "PL data")
 
     
-    useEffect(() => {
-        axios()
-            .get('/api/user/id')
-            .then((response) => {
-                setPotLucks( response.data );
-                console.log(response, "then response is here")
-            })
-            .catch((error) => {
-                console.log( error, "catch response is here");
-        });
-    }, []);
+    // useEffect(() => {
+    //     axios
+    //         .post("https://radiant-gorge-83314.herokuapp.com/api/potlucks")
+    //         .then((response) => {
+    //             setPotLucks( response.data );
+    //             console.log(response, "then response is here")
+    //         })
+    //         .catch((error) => {
+    //             console.log( error, "catch response is here");
+    //     });
+    // }, []);
 
-    const deletePotluckEvent = color => {
-        axiosWithAuth()
-        .delete(`/api/user/${potLucks.id}`)
-        .then(res => {
-          const newPotluckList = potLucks.filter((potluck) => {
-             return potluck.id !== res.data
-          })
-          setPotLucks(newPotluckList)
-        })
-        .catch((error) => console.log(err))
-    };
+    // const deletePotluckEvent = (event) => {
+    //     axios
+    //         .delete(`https://radiant-gorge-83314.herokuapp.com/api/potlucks`) // API HERE
+    //         .then((response) => {
+    //             const newPotluckList = potLucks.filter(( potluck ) => {
+    //             return potluck.id !== response.data
+    //         })
+    //         setPotLucks(newPotluckList)
+    //         })
+    //         .catch((error) => {
+    //             console.log( error, "There's an issue with deletePLEvent" );
+    //         )}
+    // };
 
     return(
         <div>
-            {/* <NewPotluckInfoForm/> */}
+            {/* <NewPotluckForm/> */}
             <div>
-                {potLucks.map((potLuck) => {
+                {potlucks.map((potluck) => {
                     return (
-                        <div key={potLuck.id}>
-                            <h3>Event Name: {potLuck.eventName}</h3>
-                            <p>Location: {potLuck.location }</p>
-                            <p>Date: {potLuck.date}</p>
-                            <p>Time: {potLuck.time}</p>
+                        <div key={potluck.id}>
+                            <h3>Event Name: {potluck.eventName}</h3>
+                            <p>Location: {potluck.location }</p>
+                            <p>Date: {potluck.date}</p>
+                            <p>Time: {potluck.time}</p>
                         </div>    
                     )
                 })}
-                 <button onClick = {e => {
-                    e.stopPropagation();
-                    deletePotluckEvent(potLucks.id)
-                 }}> Delete Potluck Event </button>
+                 <button onClick = {(event) => {
+                    event.stopPropagation();
+                    // deletePotluckEvent(potLucks.id)
+                 }}> Delete This Potluck Event </button>
             </div>
         </div>
     )
 
-
-
-
-}
+};
