@@ -59,6 +59,9 @@ function FoodList(props) {
     </FoodListDiv>
   );
 }
+
+
+
 // Styled Components
 const FoodListDiv = styled.div`
   background-color: #00af91;
