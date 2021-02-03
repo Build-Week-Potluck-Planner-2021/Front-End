@@ -4,7 +4,6 @@ import styled from "styled-components";
 function FoodList(props) {
   const [beverage, setBeverage] = useState("");
   const [food, setFood] = useState("");
-
   const logName = () => {
     console.log(beverage);
     console.log(food);
@@ -12,14 +11,14 @@ function FoodList(props) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    alert(` Items You're Bringing : ${food} / ${beverage}`);
+    alert(`Items Submitted 👌 `);
   };
 
-  const handleBeverageInput = (e) => {
-    setBeverage(e.target.value);
+  const handleBeverageInput = (evt) => {
+    setBeverage(evt.target.value);
   };
-  const handleFoodInput = (e) => {
-    setFood(e.target.value);
+  const handleFoodInput = (evt) => {
+    setFood(evt.target.value);
   };
 
   return (
@@ -28,30 +27,35 @@ function FoodList(props) {
       <form onSubmit={handleSubmit}>
         <FoodLabel>
           <label htmlFor="food">
-            <H2>Add Food:</H2>
+            <H3>Add Food:</H3>
+            <input
+              name="food"
+              placeholder="Food"
+              value={food}
+              onChange={handleFoodInput}
+            />
           </label>
-          <input
-            name="food"
-            placeholder="Food"
-            value={food}
-            onChange={handleFoodInput}
-          />
         </FoodLabel>
         <BeverageLabel>
           <label htmlFor="beverage">
-            <H2> Add Beverage:</H2>
+            <H3> Add Beverage:</H3>
+            <input
+              name="beverage"
+              placeholder="Beverage"
+              value={beverage}
+              onChange={handleBeverageInput}
+            />
           </label>
-          <input
-            name="beverage"
-            placeholder="Beverage"
-            value={beverage}
-            onChange={handleBeverageInput}
-          />
         </BeverageLabel>
         <SubmitDiv>
           <Button onClick={logName}>Submit</Button>
         </SubmitDiv>
       </form>
+      <ReturnDiv>
+        <h3>Items You're Bringing:🍴</h3>
+        <p>{food}</p>
+        <p>{beverage}</p>
+      </ReturnDiv>
     </FoodListDiv>
   );
 }
@@ -79,6 +83,11 @@ text-align: center;
 margin 10px auto;
 `;
 
+const ReturnDiv = styled.div`
+  color: #ffcc29;
+  text-align: center;
+`;
+
 const Button = styled.button`
   font-family: sans-serif;
   font-size: 1.3 rem;
@@ -96,7 +105,7 @@ const H1 = styled.h1`
   text-align: center;
 `;
 
-const H2 = styled.h2`
+const H3 = styled.h3`
   color: #ffcc29;
 `;
 
