@@ -2,8 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { axios } from "axios";
 
-const PermitForm = props => {
-    const { id } = useParams();
+const PermitForm ( props ) => {
+
     const initialPermit = {
         potluckName: "",
         userID: "",
@@ -11,39 +11,40 @@ const PermitForm = props => {
         date: "",
         time: "",
     };
+};
 
+export default function PermitForm () {
+    const [ potlucks, setPotlucks ] = useState( initialPotlucks );
 
-    const [ addPermit, setAddPermit ] = useState( initialPermit );
-
-    const handleChangePL = permit => { // handle change retitle
+    const handleChangePL = event => { // handle change retitle
         setAddPermit({
-            ...addPermit,
-            [ permit.target.name ]: permit.target.value,
+            ...potlucks,
+            [ event.target.name ]: event.target.value,
         });
     };
 
-    const handleSubmit = permit => {
-        permit.preventDefault();
+    const handleSubmit = event => {
+        event.preventDefault();
         axios()
-            .post(addPermit, `https://radiant-gorge-83314.herokuapp.com//api/potlucks`) // ADD THE API HERE! 
+            .post(potlucks, `https://radiant-gorge-83314.herokuapp.com//api/potlucks`) // ADD THE API HERE! 
             .then((response) => {
                 console.log(response, "permitPostRes")
             })
             .catch((error) => {
                 console.log(error, "Error from PermitForm");
             })
-        setAddPermit( initialPermit );
+        setPotlucks( InitialPotlucks );
     }
 // RETURNING PROPS INFO
     return (
-        <div className = "permit-form">
+        <FormContainer>
             <Form OnSubmit = { handleSubmit }>
                 <Label>Permit Name</Label>
                 <Input
                     name = "potluckName"
                     type = "text"
                     placeholder = "name"
-                    value = { addPermit.potluckName }
+                    value = { potlucks.potluckName }
                     onChange = { handleChangePL }
                 />
                 <Label>Location</Label>
@@ -51,7 +52,7 @@ const PermitForm = props => {
                     name = "location"
                     type = "text"
                     placeholder = "location"
-                    value = { addPermit.location }
+                    value = { potlucks.location }
                     onChange = { handleChangePL }
                 />
                 <Label>Date</Label>
@@ -59,7 +60,7 @@ const PermitForm = props => {
                     name = "date"
                     type = "date"
                     placeholder = "date"
-                    value = { addPermit.date }
+                    value = { potlucks.date }
                     onChange = { handleChangePL }
                 />
                 <Label>Time</Label>
@@ -67,12 +68,26 @@ const PermitForm = props => {
                     name = "time"
                     type = "time"
                     placeholder = "time"
-                    value = { addPermit.time }
+                    value = { potlucks.time }
                     onChange = { handleChangePL }
                 />
                 <Button type = "Submit">Submit</Button>
             </Form>
-        </div>
+        </FormContainer>
     )
 };
-export default PermitForm;
+
+// STYLED CSS
+const FormContainer = styled.div`
+border: 1px solid gray;
+    margin: 0 5rem;
+    width: auto;
+    display: flex; 
+`
+const Input = styled.div`
+margin: 1rem;
+`
+const Button = styled.button`
+margin: 1rem;
+`
+

@@ -31,19 +31,19 @@ const initialErrors=({
 })
 
 //slices of state 
-const [userFormValues, setUserFormValues]=useState(initialFormValues);
-const [errors, setErrors]=useState(initialErrors);
-const [users, setUsers]=useState(initialUsers);
-const [disabled, setDisabled]=useState(initialDisabled);
+const [ userFormValues, setUserFormValues ] = useState( initialFormValues );
+const [ errors, setErrors ] = useState( initialErrors );
+const [ users, setUsers ] = useState( initialUsers );
+const [ disabled, setDisabled ] = useState( initialDisabled );
 
-const [foodItems, setFoodItems]=useState(initialFoodItems);
-const [beverageItems, setBeverageItems]=useState(initialBeverageItems);
-const [potlucks, setPotlucks]=useState(initialPotlucks);
+const [ foodItems, setFoodItems ] = useState( initialFoodItems );
+const [ beverageItems, setBeverageItems ] = useState( initialBeverageItems );
+const [ potlucks, setPotlucks ] = useState( initialPotlucks );
 
 
 //event handlers
 
-const onChangeUserForm=function(event){
+const onChangeUserForm = function( event ){
 
   const {name, value, type, checked}=event.target;
 
@@ -54,17 +54,18 @@ const onChangeUserForm=function(event){
 
 const onSubmitUserForm =function(event){
   event.preventDefault();
-  const { name, value, type, checked }=event.target;
+  const { name, value, type, checked }= event.target;
   
   const newUser={
     name: userFormValues.name,
     favoriteFood: userFormValues.favoriteFood,
     foodList: userFormValues.foodList,
     potlucks: userFormValues.potlucks,
-  }
 
-  setUsers([...users, newUser]);
-  setUserFormValues(initialFormValues);
+  }
+    setUsers([...users, newUser]);
+    setUserFormValues(initialFormValues);
+
 
 
 }
@@ -81,11 +82,18 @@ const onSubmitUserForm =function(event){
         <Link to="/createfoodlist">Create A Food List</Link>
       </HeadingNav>
       <Route exact path="/">
-        <UserCreation users={users} setUsers={setUsers} userFormValues={userFormValues} setUserFormValues={setUserFormValues} onChangeUserForm={onChangeUserForm} disabled={disabled} setDisabled={setDisabled} onSubmitUserForm={onSubmitUserForm} />
+        <UserCreation 
+          users={users} 
+          setUsers={setUsers} 
+          userFormValues={userFormValues} 
+          setUserFormValues={setUserFormValues} 
+          onChangeUserForm={onChangeUserForm} 
+          disabled={disabled} setDisabled={setDisabled} 
+          onSubmitUserForm={onSubmitUserForm} />
       </Route>
 
       <Route exact path="/createpotluck">
-        <Permit />
+        <PermitForm />
       </Route>
       
       <Route exact path="/createfoodlist">
