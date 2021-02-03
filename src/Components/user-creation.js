@@ -8,7 +8,7 @@ export default function UserCreation(props){
 return (
     <div>
         <UserForm onSubmit={onSubmitUserForm}>
-            <UserFormTitle>Create A Basic Guest/Organizer Profile</UserFormTitle>
+            <UserFormTitle>Create A Guest/Organizer Profile</UserFormTitle>
             <label htmlFor="name">Enter Your Name:
                 <input name="name" value={userFormValues.name} type="text" placeholder="Enter Your Name" onChange={onChangeUserForm} />
             </label>
