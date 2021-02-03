@@ -6,6 +6,7 @@ import styled from "styled-components";
 import FoodList from "./Components/FoodList";
 import UserCreation from "./Components/user-creation";
 import PermitForm from "./Components/PermitForm";
+import axios from "axios";
 
 function App() {
 
@@ -62,8 +63,18 @@ const onSubmitUserForm =function(event){
     potlucks: userFormValues.potlucks,
 
   }
-    setUsers([...users, newUser]);
-    setUserFormValues(initialFormValues);
+  //AXIOS commented out until URL functional
+  // axios.post("https://radiant-gorge-83314.herokuapp.com/api/potlucks", newUser)
+  // .then(function(res){
+  //   setUsers([...users, newUser])
+  //   setUserFormValues(initialFormValues);
+
+  // })
+  // .catch(function(err){
+  //   console.log(err);
+  // })
+  setUsers([...users, newUser])
+  setUserFormValues(initialFormValues);
 
 }
 
@@ -123,6 +134,11 @@ const HomepageDiv = styled.div`
     border-bottom: 0.75rem ridge #ffcc29;
     border-radius: 1rem;
     padding: 0.5rem;
+  }
+  button {
+    border: 1rem ridge #ffcc29;
+    color: #00af91;
+    font-weight: bold;
   }
 `;
 const HeadingNav = styled.ul`
